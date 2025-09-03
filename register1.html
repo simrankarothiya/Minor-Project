@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - AI Group Formation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Times New Roman', serif;
+      background: linear-gradient(135deg, rgb(245, 150, 245), #255a8f);
+      overflow: hidden;
+    }
+
+    .square {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      animation: float 15s linear infinite;
+    }
+    .square:nth-child(1){width:80px;height:80px;left:10%;bottom:-150px;animation-duration:18s;}
+    .square:nth-child(2){width:60px;height:60px;left:25%;bottom:-150px;animation-duration:22s;}
+    .square:nth-child(3){width:100px;height:100px;left:40%;bottom:-150px;animation-duration:25s;}
+    .square:nth-child(4){width:50px;height:50px;left:70%;bottom:-150px;animation-duration:20s;}
+    .square:nth-child(5){width:120px;height:120px;left:85%;bottom:-150px;animation-duration:30s;}
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-110vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* Flip card container */
+    .card-container {
+      width: 400px;
+      height: 420px;
+      perspective: 1000px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      backface-visibility: hidden;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    .front {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .back {
+      transform: rotateY(180deg);
+      padding: 20px;
+    }
+
+    .header {
+      background: linear-gradient(135deg, rgb(245, 150, 245), #255a8f);
+      color: white;
+      padding: 30px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .form label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    .form input {
+      width: 95%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .form button {
+      width: 150px;
+      padding: 10px;
+      background: linear-gradient(135deg, rgb(245, 150, 245), #255a8f);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .form button:hover {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating background squares -->
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+
+  <!-- Card Flip -->
+  <div class="card-container">
+    <div class="card" id="flipCard">
+      
+      <!-- Front Side (Register + OTP) -->
+      <div class="front">
+        <div class="header">AI Group Formation</div>
+        <h2>Register</h2>
+        <div class="form">
+          <label for="email">Email:</label>
+          <input type="email" id="email" placeholder="Enter Your Email" required>
+          <button onclick="sendOTP()">Send OTP</button>
+
+          <!-- OTP input -->
+          <div id="otpSection" style="display:none; margin-top:15px;">
+            <label for="otp">Enter OTP:</label>
+            <input type="text" id="otp" placeholder="Enter OTP">
+            <button onclick="verifyOTP()">Verify OTP</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back Side (Student Details Form) -->
+      <div class="back">
+        <div class="header">Student Details</div>
+        <div class="form">
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" placeholder="Enter Name">
+
+          <label for="roll">Roll Number:</label>
+          <input type="text" id="roll" placeholder="Enter Roll No">
+
+          <label for="branch">Branch:</label>
+          <input type="text" id="branch" placeholder="Enter Branch">
+
+          <button onclick="submitDetails()">Submit</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let emailGlobal = "";
+
+    // OTP bhejna
+    async function sendOTP() {
+      const email = document.getElementById("email").value;
+      if (!email) {
+        alert("Please enter email");
+        return;
+      }
+
+      emailGlobal = email;
+
+      let response = await fetch("http://localhost:5000/send-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      let data = await response.json();
+      if (data.success) {
+        alert("OTP sent to your email!");
+        document.getElementById("otpSection").style.display = "block";
+      } else {
+        alert("Error: " + data.message);
+      }
+    }
+
+    // OTP verify
+    async function verifyOTP() {
+      const otp = document.getElementById("otp").value;
+
+      let response = await fetch("http://localhost:5000/verify-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: emailGlobal, otp }),
+      });
+
+      let data = await response.json();
+      if (data.success) {
+        alert("OTP verified successfully!");
+        document.getElementById("flipCard").classList.add("flipped");
+      } else {
+        alert("Invalid OTP, try again!");
+      }
+    }
+
+    // Student details submit
+    function submitDetails() {
+      const name = document.getElementById("name").value;
+      const roll = document.getElementById("roll").value;
+      const branch = document.getElementById("branch").value;
+
+      if (!name || !roll || !branch) {
+        alert("Please fill all details");
+        return;
+      }
+
+      alert(`Details submitted!\nName: ${name}\nRoll: ${roll}\nBranch: ${branch}`);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - AI Group Formation</title>
+  <style>
+    /* Background with floating squares */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Times New Roman', serif;
+      background: linear-gradient(135deg, rgb(245, 150, 245), #255a8f);
+      overflow: hidden;
+    }
+
+    .square {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      animation: float 15s linear infinite;
+    }
+    .square:nth-child(1){width:80px;height:80px;left:10%;bottom:-150px;animation-duration:18s;}
+    .square:nth-child(2){width:60px;height:60px;left:25%;bottom:-150px;animation-duration:22s;}
+    .square:nth-child(3){width:100px;height:100px;left:40%;bottom:-150px;animation-duration:25s;}
+    .square:nth-child(4){width:50px;height:50px;left:70%;bottom:-150px;animation-duration:20s;}
+    .square:nth-child(5){width:120px;height:120px;left:85%;bottom:-150px;animation-duration:30s;}
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-110vh) rotate(720deg); opacity: 0; }
+    }
+    .register-box {
+      width: 380px;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      text-align: center;
+      z-index: 2;
+    }
+    .header {
+      background: linear-gradient(135deg, rgb(245, 150, 245), #255a8f);
+      color: white;
+      padding: 40px 20px 60px;
+      font-size: 24px;
+      font-weight: bold;
+      position: relative;
+    }
+    .header::after {
+      content: "";
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: white;
+      border-top-left-radius: 50% 80px;
+      border-top-right-radius: 50% 80px;
+      z-index: 1;
+    }
+    .form {
+      padding: 60px 20px 30px; /* yaha extra top padding di */
+      margin-top: -20px;
+      text-align: left;
+      position: relative;
+      z-index: 2; /* taaki label white arc ke upar rahe */
+    }
+    .form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #333;
+      font-size: 18px;
+      text-align: left;
+    }
+    .form input {
+      width: 92%;
+      font-family: 'Times New Roman', Times, serif;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .form button {
+      width: 150px;
+      padding: 12px;
+      background: linear-gradient(135deg, rgb(245, 150, 245), #255a8f);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px auto;
+      font-family: 'Times New Roman', Times, serif;
+      text-align: center;
+      transition: transform 0.3s ease ,background 0.3s ease;
+    }
+    .form{
+        text-align: center;
+        padding: 20px 20px;
+        margin-top: -10px;
+    }
+    .form button:hover {
+      opacity: 0.9;
+      transform: scale(0.9);
+    }
+
+    .link {
+      margin-top: 15px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .link a {
+      color: #3b0a75;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .title {
+  text-align: center;
+  margin-top: -10px;   
+  position: relative;
+  z-index: 3;          
+  color: #333;
+  margin-bottom: 5px;
+}
+
+  </style>
+</head>
+<body>
+  <!-- Floating background squares -->
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="register-box">
+    <div class="header">AI Group Formation</div>
+    <h2 class="title">Register</h2>
+
+
+    <div class="form">
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Enter Your Email" required>
+      <input type="email" id="email" placeholder="Enter Your 4-digit OTP" required>
+      <button onclick="sendOTP()">Send OTP</button>
+
+<div id="otpSection" style="display:none; margin-top:15px;">
+  <label for="otp">Enter OTP:</label>
+  <input type="text" id="otp" placeholder="Enter OTP">
+  <button onclick="verifyOTP()">Verify OTP</button>
+
+</div>
+
+      <div class="link">
+        Already have an account? <a href="login.html">Login</a>
+      </div>
+    </div>
+  </div>
+  <script>
+  let emailGlobal = "";
+  async function sendOTP() {
+    const email = document.getElementById("email").value;
+    if (!email) {
+      alert("Please enter email");
+      return;
+    }
+
+    emailGlobal = email;
+
+    let response = await fetch("http://localhost:5000/send-otp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    let data = await response.json();
+    if (data.success) {
+      alert("OTP sent to your email!");
+
+      // OTP input show karo
+      document.getElementById("otpSection").style.display = "block";
+    } else {
+      alert("Error: " + data.message);
+    }
+  }
+  async function verifyOTP() {
+    const otp = document.getElementById("otp").value;
+
+    let response = await fetch("http://localhost:5000/verify-otp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: emailGlobal, otp }),
+    });
+
+    let data = await response.json();
+    if (data.success) {
+      alert("OTP verified successfully!");
+      window.location.href = "details.html"; // next page
+    } else {
+      alert("Invalid OTP, try again!");
+    }
+  }
+</script>
+
+</body>
+</html>
+
