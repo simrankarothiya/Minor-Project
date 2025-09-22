@@ -8,9 +8,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+  <div class="circle circle-left"></div>
+  <div class="circle circle-right"></div>
+  <div class="circle circle-small"></div>
   <header class="top-header py-2">
     <div class="container">
       <img src="pictures/clg2.png" class="logo" alt="MITS Logo" />
@@ -29,156 +34,268 @@
     </div>
   </header>
 
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Team-Cluster</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
-          <a class="nav-link active" href="index.html">Home</a>
-          <a class="nav-link active" href="#developers">Developers</a>
-          <a class="nav-link active" href="#">Contact Team Members</a>
-          <a class="nav-link active" href="#">My Profile</a>
-          <button class="btn btn-outline-danger" style="margin-left: 5px">
-            Logout
-          </button>
+          <a class="nav-link " href="index.html">Home</a>
+          <a class="nav-link active" href="developer.html">Developers</a>
+          <a class="nav-link" href="#">Contact Team Members</a>
+          <a class="nav-link" href="#">My Profile</a>
+          <button class="btn btn-outline-danger ms-2">Logout</button>
         </div>
       </div>
     </div>
   </nav>
+  <!-- Developer Section -->
+   
   <div class="container my-5">
-    <!-- Meet the Developers Heading -->
-    <h3 id="developers"><span id="typing-text"></span></h3>
-
+    <h3 id="developers" class="text-center fw-bold mb-5">
+      <span id="typing-text"></span>
+      <p style ="font-size: 20px;font-weight: 500;font-family: 'Times New Roman', Times, serif;align-items: center;margin-top: 20px;display: flex;justify-content: center;">"Dedicated to solving real-world problems with simple, scalable applications</p>
+      <p style ="font-size: 20px;font-weight: 500;font-family: 'Times New Roman', Times, serif;align-items: center;display: flex;justify-content: center;">empowering people through technology."</p>
+    </h3>
 
     <div class="row">
       <!-- Developer 1 -->
       <div class="col-md-6 mb-4">
-        <div class="profile-card p-4 text-center shadow-sm">
-          <img src="pictures/simran.jpg" alt="Developer 1" class="rounded-circle mb-3 profile-img">
-          <h3 class="fw-bold" style="font-size: 25px;font-weight: bold;">Simran Karothiya</h3>
-          <p class="text-muted" style="font-size: 22px;font-weight: bold;font-family: 'Times New Roman', Times, serif;">
-            Frontend Developer</p>
-          <div class="social-icons mt-3">
-            <a href="https://github.com/simrankarothiya"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/simran-karothiya-184420327/" class="mx-2"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:23cd10si66@mitsgwl.ac.in"><i class="fas fa-envelope"></i></a>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <!-- FRONT -->
+            <div class="flip-card-front d-flex flex-column justify-content-center align-items-center">
+              <img src="pictures/sikk.jpg" alt="Developer 1" class="profile-img mb-3">
+              <h3 class="fw-bold">Simran Karothiya</h3>
+              <p>Frontend Developer</p>
+              <div class="social-icons mt-3">
+                <a href="https://github.com/simrankarothiya"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/simran-karothiya-184420327/"><i
+                    class="fab fa-linkedin mx-2"></i></a>
+                <a href="mailto:23cd10si66@mitsgwl.ac.in"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <!-- BACK -->
+            <div class="flip-card-back d-flex flex-column align-items-start text-start p-3">
+              <h5 class="fw-bold w-100 text-center mb-3" style="font: 1.6em 'Times New Roman', serif;">
+                🎓 Education
+              </h5>
+
+              <h5 class="card-title mb-5" style="color:goldenrod; font-size: 30px;">Simran Karothiya</h5>
+
+              <p class="card-text mb-4" style="font-size: 18px;">
+                <strong>Madhav Institute of Technology & Science (MITS), Gwalior</strong>
+              </p>
+
+              <p class="card-text mb-3 " style="font-size: 18px;">📘 Bachelor of Technology in Computer Science And
+                Design</p>
+              <p class="card-text mb-3" style="font-size: 18px;">📅 Aug 2023 – Jun 2027</p>
+              <p class="card-text mb-3" style="font-size: 18px;">⭐ CGPA: 8.5 / 10</p>
+              <p class="card-text mb-5" style="font-size: 18px;">🆔 Enrollment No: 0901CD231066</p>
+
+
+            </div>
           </div>
         </div>
       </div>
-      
+
       <!-- Developer 2 -->
       <div class="col-md-6 mb-4">
-        <div class="profile-card p-4 text-center shadow-sm">
-          <img src="pictures/simran.jpg" alt="Developer 1" class="rounded-circle mb-3 profile-img">
-          <h4 class="fw-bold " style="font-size: 25px;font-weight: bold;">Astha Verma</h4>
-          <p class="text-muted" style="font-size: 22px;font-weight: bold;font-family: 'Times New Roman', Times, serif;">
-            Frontend Developer</p>
-            <div class="social-icons mt-3">
-              <a href="https://github.com/simrankarothiya"><i class="fab fa-github"></i></a>
-              <a href="https://www.linkedin.com/in/simran-karothiya-184420327/" class="mx-2"><i class="fab fa-linkedin"></i></a>
-              <a href="mailto:23cd10si66@mitsgwl.ac.in"><i class="fas fa-envelope"></i></a>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <!-- FRONT -->
+            <div class="flip-card-front d-flex flex-column justify-content-center align-items-center">
+              <img src="pictures/simran.jpg" alt="Developer 2" class="profile-img mb-3">
+              <h3 class="fw-bold">Astha Verma</h3>
+              <p>Frontend Developer</p>
+              <div class="social-icons mt-3">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin mx-2"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
             </div>
-        </div>
-      </div>
+            <!-- BACK -->
+            <div class="flip-card-back d-flex flex-column align-items-start text-start p-3">
+              <h5 class="fw-bold w-100 text-center mb-3" style="font: 1.6em 'Times New Roman', serif;">
+                🎓 Education
+              </h5>
 
-      <!-- Education Section -->
-      <h3 class="mt-5 mb-3 fw-bold text-center" style="font-family: 'Times New Roman', Times, serif; font-size: 35px;">
-        Education</h3>
-      <div class="row">
-        <div class="col-md-6 mb-3 mt-5">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Simran Karothiya</h5>
-              <strong>
-                <p class="card-text">Madhav Institute of Technology & Science (MITS), Gwalior
-              </strong></p>
-              <p class="card-text mt-1">🎓Bachelor of Technology in Computer Science And Design</p>
-              </p class="card-text">📅Aug 2023 – Jun 2027</p>
+              <h5 class="card-title mb-5" style="color:goldenrod; font-size: 30px;">Simran Karothiya</h5>
 
-              </p class="card-text"> • CGPA: 8.5 / 10</p>
+              <p class="card-text mb-4" style="font-size: 18px;">
+                <strong>Madhav Institute of Technology & Science (MITS), Gwalior</strong>
+              </p>
 
-              </p class="card-text"> • Enrollment No: 0901CD231066</p>
+              <p class="card-text mb-3 " style="font-size: 18px;">📘 Bachelor of Technology in Computer Science And
+                Design</p>
+              <p class="card-text mb-3" style="font-size: 18px;">📅 Aug 2023 – Jun 2027</p>
+              <p class="card-text mb-3" style="font-size: 18px;">⭐ CGPA: 8.5 / 10</p>
+              <p class="card-text mb-5" style="font-size: 18px;">🆔 Enrollment No: 0901CD231066</p>
 
-
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 mb-3 mt-5">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Astha Verma</h5>
-              <strong>
-                <p class="card-text">Madhav Institute of Technology & Science (MITS), Gwalior
-              </strong></p>
-              <p class="card-text mt-1">🎓Bachelor of Technology in Computer Science And Design</p>
-              </p class="card-text">📅Aug 2023 – Jun 2027</p>
-
-              </p class="card-text"> • CGPA: 8.5 / 10</p>
-
-              </p class="card-text"> • Enrollment No: 0901EC231025</p>
 
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="row achievements">
+    <div class="col-sm-6  mb-sm-0">
+      <div class="card achievement-card first-card">
+        <div class="card-body">
+          <h5 class="card-title">
+  <i class="fa-solid fa-trophy " style=" margin-right:8px;"></i>
+  Key Achievements
+</h5>
+        <p class="card-text">
+  <i class="fas fa-code" style="margin-right:8px; color:#007bff;"></i>
+  Solved 800+ problems on CodeChef and 150+ on LeetCode
+</p>
+           <p class="card-text">
+            <i class="fas fa-award" style="margin-right:8px; color:#007bff;"></i>
+            Achieved 100-Day Streak (CodeChef) & 90+Day Streak (LeetCode)</p>
 
-    <footer class="footer text-white mt-5 pt-5 pb-3">
-      <div class="container">
-        <div class="row text-center text-md-start">
+            <p class="card-text"><i class="fas fa-project-diagram" style="margin-right:8px; color:#007bff;"></i>
+              Built projects like Spotify Clone & Portfolio Website ans so on..</p>
 
-          <!-- About Section -->
-          <div class="col-md-4 mb-4 ">
-            <h5 class="fw-bold ">Team Cluster</h5>
-            <p>Building seamless web experiences and interactive interfaces with creativity and precision.</p>
-          </div>
-
-          <!-- Quick Links -->
-          <div class="col-md-4 mb-4">
-            <h5 class="fw-bold">Quick Links</h5>
-            <ul class="list-unstyled ">
-              <li><a href="index.html" class="text-white text-decoration-none ">Home</a></li>
-              <li><a href="developer.html" class="text-white text-decoration-none ">Developers</a></li>
-              <li><a href="#" class="text-white text-decoration-none ">Contact</a></li>
-              <li><a href="#" class="text-white text-decoration-none ">Profile</a></li>
-            </ul>
-          </div>
-
-          <!-- Social Media -->
-          <div class="col-md-4 mb-4">
-            <h5 class="fw-bold">Follow Us</h5>
-
-            <a href="https://leetcode.com/u/SimranK1/" class="text-white me-3 fs-4"><i class="fab fa-leanpub"></i></a>
-            <a href="https://www.linkedin.com/in/simran-karothiya-184420327/" class="text-white me-3 fs-4"><i
-                class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/simrankarothiya" class="text-white fs-4"><i class="fab fa-github"></i></a>
-          </div>
-
-        </div>
-
-        <hr class="bg-white" />
-
-        <div class="text-center">
-          <p class="mb-0">© 2025 Team Cluster | Madhav Institute of Technology and Science, Gwalior</p>
+             <p class="card-text"> <i class="fas fa-graduation-cap" style="margin-right:8px; color:#007bff;"></i>
+              Contributed to GSSoC and earned achievement badges.</p>
+             <p class="card-text"><i class="fas fa-trophy" style="margin-right:8px; color:#007bff;"></i>
+              Maintaining 8.5+ CGPA in B.Tech CSE (Design)</p>
+              <div class="social-icons mt-3">
+  <a href="https://github.com/simrankarothiya" 
+     style="font-size:22px; color:#1f7ab8; margin-right:12px; text-decoration:none; transition: color 0.3s;">
+     <i class="fab fa-github"></i>
+  </a>
+  <a href="https://leetcode.com/u/SimranK1/" 
+     style="font-size:22px; color:#5dade2; margin-right:12px; text-decoration:none; transition: color 0.3s;">
+     <i class="fas fa-code"></i>
+  </a>
+  <a href="https://www.codechef.com/users/simrank1" 
+     style="font-size:18px; color:#5dade2; text-decoration:none; transition: color 0.3s;">
+     <i class="fas fa-laptop-code"></i>
+  </a>
+</div>
+          
         </div>
       </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      const typingText = "Meet The Developers ";
-      let i = 0;
-      function typeWriter() {
-        if (i < typingText.length) {
-          document.getElementById("typing-text").innerHTML += typingText.charAt(i);
-          i++;
-          setTimeout(typeWriter, 50);
-        }
+    </div>
+    <div class="col-sm-6">
+      <div class="card achievement-card second-card">
+        <div class="card-body">
+          <h5 class="card-title">
+  <i class="fa-solid fa-trophy " style=" margin-right:8px;"></i>
+  Key Achievements
+</h5>
+          <p class="card-text">Solved 800+ problems on CodeChef and 150+ on LeetCode</p>
+           <p class="card-text">Achieved 100-Day Streak (CodeChef) & 50-Day Streak (LeetCode)</p>
+            <p class="card-text">Built projects like Spotify Clone & Portfolio Website ans so on..</p>
+            
+             <p class="card-text">Maintaining 8.5+ CGPA in B.Tech CSE (Design)</p>
+
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <br>
+  <br>
+  <br>
+  <div class="card mb-3 mt-4 mx-auto shadow-lg " data-aos="fade-up"
+    style="max-width: 1100px; border-radius: 15px;background: linear-gradient(135deg,rgb(194, 145, 194), #8eb7e0); ">
+    <div class="row g-0 align-items-center">
+
+      <!-- Left Image -->
+      <div class="col-md-4 d-flex justify-content-center align-items-center p-3">
+        <img src="PICTURES/sir.WEBP" class="img-fluid" alt="Mentor Image"
+          style="width:220px; height:220px; object-fit:cover; border-radius:50%; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+      </div>
+      <!-- Right Content -->
+      <div class="col-md-8">
+        <div class="card-body">
+          <h3 class="card-title" style="font-family:'Times New Roman',serif;font-weight:bold;font-size: 28px;">
+            Under the Guidance & Mentorship
+          </h3>
+          <p class="card-text" style="font-size:18px;line-height:1.6;">
+            Dr. Mahesh Parmar, Assistant Professor in the Department of Computer Science and Engineering at MITS
+            Gwalior, is sincerely acknowledged for his invaluable mentorship and over a decade of academic and
+            professional excellence.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class=" footer text-white mt-5 pt-5 pb-3" data-aos="fade-up">
+    <div class="container">
+      <div class="row text-center text-md-start">
+
+
+        <div class="col-md-4 mb-4 ">
+          <h5 class="fw-bold ">Team Cluster</h5>
+          <p>Building seamless web experiences and interactive interfaces with creativity and precision.</p>
+        </div>
+
+
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold">Quick Links</h5>
+          <ul class="list-unstyled ">
+            <li><a href="index.html" class="text-white text-decoration-none ">Home</a></li>
+            <li><a href="developer.html" class="text-white text-decoration-none ">Developers</a></li>
+            <li><a href="#" class="text-white text-decoration-none ">Contact</a></li>
+            <li><a href="#" class="text-white text-decoration-none ">Profile</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold">Follow Us</h5>
+
+          <a href="https://leetcode.com/u/SimranK1/" class="text-white me-3 fs-4"><i class="fab fa-leanpub"></i></a>
+          <a href="https://www.linkedin.com/in/simran-karothiya-184420327/" class="text-white me-3 fs-4"><i
+              class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/simrankarothiya" class="text-white fs-4"><i class="fab fa-github"></i></a>
+        </div>
+
+      </div>
+
+      <hr class="bg-white" />
+
+      <div class="text-center">
+        <p class="mb-0">© 2025 Team Cluster | Madhav Institute of Technology and Science, Gwalior</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Typing Effect -->
+  <script>
+    const typingText = "Meet The Developers ";
+    let i = 0;
+    function typeWriter() {
+      if (i < typingText.length) {
+        document.getElementById("typing-text").innerHTML += typingText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 70);
       }
-      typeWriter();
-    </script>
+    }
+    typeWriter();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js" class="__web-inspector-hide-shortcut__"></script>
+
+
+  <script>
+    AOS.init();
+    console.log(AOS.init())
+  </script>
 </body>
 
 </html>

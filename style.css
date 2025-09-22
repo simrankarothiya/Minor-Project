@@ -33,7 +33,6 @@
     text-align: center;
 }
 
-
 .navbar {
     background-color: white;
     border-top: 2px solid #ccc;
@@ -79,6 +78,7 @@
     height: 180px;
     border: 4px solid white;
     object-fit: cover;
+    border-radius: 50%;
 }
 .social-icons a {
     color: white; 
@@ -90,17 +90,19 @@
     transform: scale(1.2);
 }
 #typing-text {
-      font-size: 2.2rem;
-  font-weight: bold;
-  color: black;
-  font-family:Georgia, 'Times New Roman', Times, serif;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
+      font-family:cursive;
+      font-size: 35px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid black;  
+      width: 0; 
+      font-weight: b;
+      
     }
+
+    /* text typing animation */
+    
     html {
   scroll-behavior: smooth;
 }
@@ -117,16 +119,15 @@
   text-align: center;
   box-shadow:  0 8px 20px rgba(7, 5, 5, 0.4);
 }
-.hero-content h2 {
-  font-size: 3rem;
+.hero-content h1 {
+  font-size: 4rem;
   margin-bottom: 10px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .hero-content h3 {
   font-size: 1.4rem;
   font-weight: 400;
   margin-bottom: 20px;
-  font-family: 'Times New Roman', Times, serif;
 }
 .btn.primary {
   background: #ffcc00;
@@ -184,20 +185,64 @@
   line-height: 1.6;
   color: #333;
 }
-@media (max-width: 768px) {
-    .top-header .container {
-        flex-wrap: nowrap; 
-    }
-    .logo {
-        max-width: 80px;
-    }
-    #heading, #head {
-        font-size: 16px;
-    }
-    #D {
-        font-size: 14px;
-    }
+.flip-card {
+  background: transparent;
+  width: 100%;
+  height: 380px;
+  perspective: 1000px;
 }
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border-radius: 15px;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  padding-left: 25px;
+}
+
+.flip-card-front {
+  background: linear-gradient(135deg,rgb(245, 150, 245), #255a8f); 
+  color: white;
+}
+
+.flip-card-back {
+  background: linear-gradient(135deg, #3d52ad, #c5598a); /* thoda soft aur attractive */
+  color: white;
+  box-shadow: rgb(110, 110, 32); /* dark shadow */
+  border-radius: 12px;
+  transform: rotateY(180deg);
+
+  border-radius: 12px;
+}
+
+.flip-card-back h5,
+.flip-card-back p {
+  line-height: 1.5;
+  
+}
+
+.flip-card-back p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
 .button{
    padding:8px 20px; 
     font-size:28px; 
@@ -209,28 +254,109 @@
 .button:hover{
   background-color: #ffcc00;
 }
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1; /* so that content rahe upar */
+  opacity: 0.3; /* halka transparent */
+}
+
+/* Left side bada circle */
+.circle-left {
+  width: 260px;
+  height: 260px;
+  background: #6c63ff;
+  top: 120px;
+  left: -120px;
+}
+
+/* Right side bada circle */
+.circle-right {
+  width: 260px;
+  height: 260px;
+  background:#6c63ff ;
+  top: 120px;
+  right: -120px;
+  position: absolute;
+}
+.first-card {
+  margin-left: 128px;
+  background: rgba(245, 245, 245, 0.6);  /* हल्का grey with transparency */
+  backdrop-filter: blur(6px);             /* blur glass effect */
+  border: 5px solid rgba(71, 60, 60, 0.3); 
+  
+}
+.second-card{
+  background: rgba(245, 245, 245, 0.6);  /* हल्का grey with transparency */
+  backdrop-filter: blur(6px);             /* blur glass effect */
+  border: 5px solid rgba(71, 60, 60, 0.3); 
+}
+.achievement-card {
+  border: none; 
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  width: 500px;
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.achievement-card .card-body {
+  padding: 25px;
+  text-decoration: none;
+}
+
+.achievement-card .card-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #2c3e50;
+  text-decoration: none;
+}
+
+.achievement-card .card-text {
+  color: #555;
+  font-size: 15px;
+  
+}
+/* Small circle */
 
 @media (max-width: 992px) {
   .hero-container {
     flex-direction: column;
     text-align: center;
+    gap: 20px;
   }
   .hero-img img {
-    max-width: 250px;
+    max-width: 280px;
   }
   .hero-text h2 {
     font-size: 24px;
   }
   .hero-text p {
-    font-size: 14px;
+    font-size: 15px;
+  }
+  .profile-card {
+    margin-top: 100px;
+    padding: 15px;
+  }
+  .profile-img {
+    width: 140px;
+    height: 140px;
+  }
+  .social-icons a {
+    font-size: 26px;
   }
 }
 
-
+/* 🟩 Tablets & big phones (<=768px) */
 @media (max-width: 768px) {
   .top-header .container {
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
     text-align: center;
   }
   .logo {
@@ -243,39 +369,78 @@
     font-size: 12px;
   }
   .navbar-nav {
-    display: flex;
     flex-direction: column;
-    text-align: center;
     gap: 10px;
+    text-align: center;
   }
   .hero-content h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
   .profile-card {
-    margin-top: 80px;
-    padding: 15px;
-  }
-  .profile-img {
-    width: 140px;
-    height: 140px;
-  }
-  .social-icons a {
-    font-size: 24px;
+    margin-top: 60px;
   }
 }
 
+/* 🟨 Small phones (<=480px) */
 @media (max-width: 480px) {
   .hero-content h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   .hero-content h3 {
     font-size: 1rem;
   }
-  .btn.primary, .btn.secondary {
-    padding: 8px 16px;
+  .hero-text p {
     font-size: 14px;
   }
   .hero-img img {
-    max-width: 200px;
+    max-width: 180px;
+  }
+  .profile-img {
+    width: 100px;
+    height: 100px;
+  }
+  .logo {
+    max-width: 70px;
+  }
+  #heading, #head {
+    font-size: 14px;
+  }
+  #D {
+    font-size: 11px;
+  }
+}
+
+/* 🟥 Extra small phones (<=360px) */
+@media (max-width: 360px) {
+  .top-header .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  .logo {
+    max-width: 60px;
+  }
+  #heading, #head {
+    font-size: 12px;
+    text-align: center;
+  }
+  #D {
+    font-size: 10px;
+  }
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+  .hero-content h3 {
+    font-size: 0.9rem;
+  }
+  .hero-text p {
+    font-size: 12px;
+  }
+  .hero-img img {
+    max-width: 150px;
+  }
+  .profile-img {
+    width: 80px;
+    height: 80px;
   }
 }
